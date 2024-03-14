@@ -10,12 +10,15 @@ const ACTION = {
   DOUBLE: "double",
 };
 
-const countReducer = (state: any, action: any) => {
-  switch (action.type) {
+type State = { count: number };
+type Action = { type: string; payload?: number };
+
+const countReducer = (state: State, { type, payload = 0 }: Action): State => {
+  switch (type) {
     case ACTION.ADD:
-      return { count: state.count + 1 };
+      return { count: state.count + payload };
     case ACTION.REMOVE:
-      return { count: state.count - 1 };
+      return { count: state.count - payload };
     case ACTION.RESET:
       return { count: 0 };
     case ACTION.ADD_10:
@@ -23,9 +26,11 @@ const countReducer = (state: any, action: any) => {
     case ACTION.REMOVE_10:
       return { count: state.count - 10 };
     case ACTION.HALF:
-      return { count: state.count / 2 };
+      return { count: Math.round(state.count) / 2 };
     case ACTION.DOUBLE:
       return { count: state.count * 2 };
+    default:
+      return state;
   }
 };
 
@@ -36,22 +41,31 @@ function Counter() {
     <div className='wrapper'>
       <h1>Counter: useReducer</h1>
       <div className='btn-container'>
-        <button onClick={() => dispatch({ type: ACTION.ADD })}>Add</button>
-        <p>{state?.count}</p>
-        <button onClick={() => dispatch({ type: ACTION.REMOVE })}>
+        <p>{state.count}</p>
+        <button onClick={() => dispatch({ type: ACTION.ADD, payload: 1 })}>
+          Add
+        </button>
+        <button onClick={() => dispatch({ type: ACTION.REMOVE, payload: 1 })}>
           Remove
         </button>
-        <button onClick={() => dispatch({ type: ACTION.RESET })}>Reset</button>
-        <button onClick={() => dispatch({ type: ACTION.ADD_10 })}>
+        <button onClick={() => dispatch({ type: ACTION.RESET, payload: 0 })}>
+          Reset
+        </button>
+        <button onClick={() => dispatch({ type: ACTION.ADD, payload: 10 })}>
           Add 10
         </button>
-        <button onClick={() => dispatch({ type: ACTION.REMOVE_10 })}>
+        <button onClick={() => dispatch({ type: ACTION.REMOVE, payload: 10 })}>
           Remove 10
         </button>
         <button onClick={() => dispatch({ type: ACTION.HALF })}>Half</button>
         <button onClick={() => dispatch({ type: ACTION.DOUBLE })}>
           DOUBLE UP
         </button>
+      </div>
+      {/*Blev inte färdig med inputfältet där jag ska kunna klicka på add och siffran visas i counter */}
+      <div className='input-type'>
+        <input type='number' />
+        <button>Add</button>
       </div>
     </div>
   );
