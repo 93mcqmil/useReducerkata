@@ -6,6 +6,7 @@ const ACTION = {
   RESET: "reset",
   ADD_10: "add-10",
   REMOVE_10: "remove-10",
+  HALF: "half",
 };
 
 const countReducer = (state: any, action: any) => {
@@ -20,6 +21,8 @@ const countReducer = (state: any, action: any) => {
       return { count: state.count + 10 };
     case ACTION.REMOVE_10:
       return { count: state.count - 10 };
+    case ACTION.HALF:
+      return { count: state.count / 2 };
   }
 };
 
@@ -42,6 +45,7 @@ function Counter() {
         <button onClick={() => dispatch({ type: ACTION.REMOVE_10 })}>
           Remove 10
         </button>
+        <button onClick={() => dispatch({ type: ACTION.HALF })}>Half</button>
       </div>
     </div>
   );
