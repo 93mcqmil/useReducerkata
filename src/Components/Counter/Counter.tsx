@@ -39,9 +39,11 @@ function Counter() {
 
   return (
     <div className='wrapper'>
-      <h1>Counter: useReducer</h1>
-      <div className='btn-container'>
+      <h1>
+        Counter: useReducer
         <p>{state.count}</p>
+      </h1>
+      <div className='btn-container'>
         <button onClick={() => dispatch({ type: ACTION.ADD, payload: 1 })}>
           Add
         </button>
@@ -64,7 +66,7 @@ function Counter() {
       </div>
       {/*Blev inte färdig med inputfältet där jag ska kunna klicka på add och siffran visas i counter */}
       <div className='input-type'>
-        <input type='number' />
+        <input type='number' value={state.count} />
         <button>Add</button>
       </div>
     </div>
