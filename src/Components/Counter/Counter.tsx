@@ -3,6 +3,7 @@ import { useReducer } from "react";
 const ACTION = {
   ADD: "add",
   REMOVE: "remove",
+  RESET: "reset",
 };
 
 const countReducer = (state: any, action: any) => {
@@ -11,6 +12,8 @@ const countReducer = (state: any, action: any) => {
       return { count: state.count + 1 };
     case ACTION.REMOVE:
       return { count: state.count - 1 };
+    case ACTION.RESET:
+      return { count: 0 };
   }
 };
 
@@ -26,6 +29,7 @@ function Counter() {
         <button onClick={() => dispatch({ type: ACTION.REMOVE })}>
           Remove
         </button>
+        <button onClick={() => dispatch({ type: ACTION.RESET })}>Reset</button>
       </div>
     </div>
   );
