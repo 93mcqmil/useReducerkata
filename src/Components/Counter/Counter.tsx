@@ -4,6 +4,7 @@ const ACTION = {
   ADD: "add",
   REMOVE: "remove",
   RESET: "reset",
+  ADD_10: "add-10",
 };
 
 const countReducer = (state: any, action: any) => {
@@ -14,6 +15,8 @@ const countReducer = (state: any, action: any) => {
       return { count: state.count - 1 };
     case ACTION.RESET:
       return { count: 0 };
+    case ACTION.ADD_10:
+      return { count: state.count + 10 };
   }
 };
 
@@ -30,6 +33,9 @@ function Counter() {
           Remove
         </button>
         <button onClick={() => dispatch({ type: ACTION.RESET })}>Reset</button>
+        <button onClick={() => dispatch({ type: ACTION.ADD_10 })}>
+          Add 10
+        </button>
       </div>
     </div>
   );
