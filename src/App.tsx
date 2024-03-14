@@ -1,11 +1,13 @@
-import { useState } from "react";
 import "./App.css";
 import Counter from "./Components/Counter/Counter";
+import Countertwo from "./Components/Countertwo/Countertwo";
 
 function App() {
   return (
     <>
-      <Counter />
+      <h1>Counter: 2</h1>
+      <Countertwo />
+      {/* <Counter /> */}
     </>
   );
 }
